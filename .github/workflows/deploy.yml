@@ -43,7 +43,7 @@ jobs:
           PROJECT=$(dirname "$(find project -name package.json | head -n 1)")
           cd "$PROJECT"
 
-          node -e "let fs=require('fs');let f='next.config.mjs';let s=fs.readFileSync(f,'utf8');if(!s.includes(\"output: 'export'\")){s=s.replace('const nextConfig = {', \"const nextConfig = {\\n  output: 'export',\");fs.writeFileSync(f,s)}"
+          node -e "let fs=require('fs');let f='next.config.mjs';let s=fs.readFileSync(f,'utf8');s=s.replace('const nextConfig = {', \"const nextConfig = {\\n  output: 'export',\\n  basePath: '/what-are-the-chances',\\n  assetPrefix: '/what-are-the-chances/',\");fs.writeFileSync(f,s)"
 
           pnpm install --frozen-lockfile
           pnpm build
